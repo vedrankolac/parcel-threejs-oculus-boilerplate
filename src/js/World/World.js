@@ -8,6 +8,7 @@ import { createLights } from './components/lights.js';
 import { blue } from './components/materials/blue.js';
 import { cube } from './components/meshes/cube.js'
 import { sphere } from './components/meshes/sphere.js'
+import { createFloor } from './components/meshes/floor.js'
 
 let loop;
 
@@ -22,12 +23,16 @@ class World {
     const lights = createLights(scene);
     const material = blue(0x2222cc);
 
-    const nItems = 8;
-    for (let i = 0; i < nItems; i++) {
-      for (let j = 0; j < nItems; j++) {
+    const floor = createFloor(scene);
+
+    const xItems = 32;
+    const yItems = 4;
+    const yShift = 3;
+    for (let i = 0; i < xItems; i++) {
+      for (let j = 0; j < yItems; j++) {
         let temp_cube = cube(material);
-        temp_cube.position.x = (i - nItems/2) * 1.2 + 0.5;
-        temp_cube.position.y = (j - nItems/2) * 1.2 + 0.5;
+        temp_cube.position.x = (i - xItems/2) * 1.2 + 0.5;
+        temp_cube.position.y = (j - yItems/2) * 1.2 + 0.5 + yShift;
         temp_cube.position.z = -4;
         scene.add( temp_cube );
         loop.updatables.push(temp_cube);
