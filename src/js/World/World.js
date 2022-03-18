@@ -21,7 +21,7 @@ class World {
 
     const controls = new OrbitControls(camera, renderer.domElement)
     const lights = createLights(scene);
-    const material = blue(0x2222cc);
+    const material = blue(0x292999);
 
     const floor = createFloor(scene);
 
