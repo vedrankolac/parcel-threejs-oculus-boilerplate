@@ -9,6 +9,7 @@ import { blue } from './components/materials/blue.js';
 import { cube } from './components/meshes/cube.js'
 import { sphere } from './components/meshes/sphere.js'
 import { createFloor } from './components/meshes/floor.js'
+import { VrControls } from './system/VrControls.js'
 
 let loop;
 
@@ -20,6 +21,9 @@ class World {
     loop = new Loop(camera, scene, renderer);
 
     const controls = new OrbitControls(camera, renderer.domElement)
+    const vrControls = new VrControls(renderer, scene);
+    loop.updatables.push(vrControls);
+
     const lights = createLights(scene);
     const material = blue(0x292999);
 
