@@ -50,14 +50,14 @@ class VrControls {
     switch ( data.targetRayMode ) {
       case 'tracked-pointer':
         geometry = new BufferGeometry();
-				geometry.setAttribute( 'position', new Float32BufferAttribute( [ 0, 0, 0, 0, 0, - 1 ], 3 ) );
-				geometry.setAttribute( 'color', new Float32BufferAttribute( [ 0.5, 0.5, 0.5, 0, 0, 0 ], 3 ) );
-				material = new LineBasicMaterial( { vertexColors: true, blending: AdditiveBlending } );
-				return new Line( geometry, material );
+        geometry.setAttribute( 'position', new Float32BufferAttribute( [ 0, 0, 0, 0, 0, - 1 ], 3 ) );
+        geometry.setAttribute( 'color', new Float32BufferAttribute( [ 0.5, 0.5, 0.5, 0, 0, 0 ], 3 ) );
+        material = new LineBasicMaterial( { vertexColors: true, blending: AdditiveBlending } );
+        return new Line( geometry, material );
       case 'gaze':
         geometry = new RingGeometry( 0.02, 0.04, 32 ).translate( 0, 0, - 1 );
         material = new MeshBasicMaterial( { opacity: 0.5, transparent: true } );
-				return new Mesh( geometry, material );
+        return new Mesh( geometry, material );
       default:
         break;
     }
