@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import { Group } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { Loop } from './system/Loop.js';
 import { createRenderer } from './system/renderer.js';
@@ -20,14 +20,20 @@ class World {
     const camera = createCamera();
     loop = new Loop(camera, scene, renderer);
 
-    const controls = new OrbitControls(camera, renderer.domElement)
-    const vrControls = new VrControls(renderer, scene);
+    // dolly for camera
+    const dolly = new Group();
+    dolly.position.set(0, 0, 40);
+    dolly.name = "dolly";
+    scene.add(dolly);
+    dolly.add(camera);
+
+    // const controls = new OrbitControls(camera, renderer.domElement)
+    const vrControls = new VrControls(renderer, dolly);
     loop.updatables.push(vrControls);
 
-    const lights = createLights(scene);
-    const material = blue(0x292999);
-
     const floor = createFloor(scene);
+    const lights = createLights(scene);
+    const material = blue(0x292966);
 
     const xItems = 32;
     const yItems = 4;

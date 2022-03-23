@@ -14,35 +14,41 @@ let controller1;
 let controller2;
 let controllerGrip1;
 let controllerGrip2;
+let ren;
+let dol;
 
 class VrControls {
-  constructor (renderer, scene) {
-    // this class is based on this example:
+  constructor (renderer, dolly) {
+    // this class is based on this examples:
     // https://threejs.org/examples/?q=webxr#webxr_vr_ballshooter
+    // https://codepen.io/jason-buchheim/details/zYqYGXM
+
+    ren = renderer;
+    dol = dolly;
 
     controller1 = renderer.xr.getController( 0 );
     controller1.addEventListener('selectstart', this.onSelectStart);
     controller1.addEventListener('selectend', this.onSelectEnd);
     controller1.addEventListener('connected', event => controller1.add(this.buildController(event.data)));
     controller1.addEventListener('disconnected', () => controller1.remove(controller1.children[ 0 ]));
-    scene.add(controller1);
+    dol.add(controller1);
 
     controller2 = renderer.xr.getController( 1 );
     controller2.addEventListener( 'selectstart', this.onSelectStart );
     controller2.addEventListener( 'selectend', this.onSelectEnd );
     controller2.addEventListener('connected', event => controller2.add(this.buildController(event.data)));
     controller2.addEventListener('disconnected', () => controller2.remove(controller2.children[ 0 ]));
-    scene.add(controller2);
+    dol.add(controller2);
 
     const controllerModelFactory = new XRControllerModelFactory();
 
     controllerGrip1 = renderer.xr.getControllerGrip( 0 );
     controllerGrip1.add( controllerModelFactory.createControllerModel( controllerGrip1 ) );
-    scene.add( controllerGrip1 );
+    dol.add( controllerGrip1 );
     
     controllerGrip2 = renderer.xr.getControllerGrip( 1 );
     controllerGrip2.add( controllerModelFactory.createControllerModel( controllerGrip2 ) );
-    scene.add( controllerGrip2 );
+    dol.add( controllerGrip2 );
   }
 
   buildController(data) {
@@ -77,9 +83,18 @@ class VrControls {
   }
 
   handleController(controller) {
-    if ( controller.userData.isSelecting ) {
-      // here goes the code for isSelectiong event
+    const session = ren.xr.getSession();
+    if (session) {
+      let source = session.inputSources[1];
+      if (source.gamepad) {
+        let velocity = 0.1;
+        dol.position.x += source.gamepad.axes[2] * velocity;
+        dol.position.z += source.gamepad.axes[3] * velocity;
+      }
     }
+    // if ( controller.userData.isSelecting ) {
+    //   // here goes the code for isSelectiong event
+    // }
   }
 }
 
