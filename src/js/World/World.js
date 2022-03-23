@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { Loop } from './system/Loop.js';
 import { createRenderer } from './system/renderer.js';
 import { createScene } from './components/scene.js';
-import { createCamera } from './components/camera.js';
+import { createCamera, createDolly } from './components/camera.js';
 import { createLights } from './components/lights.js';
 import { blue } from './components/materials/blue.js';
 import { cube } from './components/meshes/cube.js'
@@ -20,12 +20,8 @@ class World {
     const camera = createCamera();
     loop = new Loop(camera, scene, renderer);
 
-    // dolly for camera
-    const dolly = new Group();
+    const dolly = createDolly(camera, scene);
     dolly.position.set(0, 0, 40);
-    dolly.name = "dolly";
-    scene.add(dolly);
-    dolly.add(camera);
 
     // const controls = new OrbitControls(camera, renderer.domElement)
     const vrControls = new VrControls(renderer, dolly);
