@@ -1,5 +1,3 @@
-import { Group } from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { Loop } from './system/Loop.js';
 import { createRenderer } from './system/renderer.js';
 import { createScene } from './components/scene.js';
@@ -7,7 +5,6 @@ import { createCamera, createDolly } from './components/camera.js';
 import { createLights } from './components/lights.js';
 import { blue } from './components/materials/blue.js';
 import { cube } from './components/meshes/cube.js'
-import { sphere } from './components/meshes/sphere.js'
 import { createFloor } from './components/meshes/floor.js'
 import { VrControls } from './system/VrControls.js'
 
@@ -21,7 +18,6 @@ class World {
     const dolly = createDolly(camera, scene);
     dolly.position.set(0, 0, 40);
 
-    // const controls = new OrbitControls(camera, renderer.domElement)
     const vrControls = new VrControls(renderer, dolly, camera);
     this.loop.updatables.push(vrControls);
 
