@@ -1,5 +1,7 @@
 ## parcel-threejs-boilerplate
-Boilerplate for a fast start with three.js
+Boilerplate for a fast start with three.js on Oculus Quest 2 VR.
+- only tested on Oculus Quest 2
+- movement is controlled with joystick
 
 #### 1. How to deploy for github pages
 ```bash
