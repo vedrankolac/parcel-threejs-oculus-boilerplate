@@ -24,7 +24,7 @@ class World {
     dolly.position.set(0, 0, 40);
 
     // const controls = new OrbitControls(camera, renderer.domElement)
-    const vrControls = new VrControls(renderer, dolly);
+    const vrControls = new VrControls(renderer, dolly, camera);
     loop.updatables.push(vrControls);
 
     const floor = createFloor(scene);
