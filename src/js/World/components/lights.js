@@ -4,9 +4,9 @@ const createLights = scene => {
   const light_ambient = new AmbientLight({ color: 0x000000, intensity: 1 })
   scene.add(light_ambient)
 
-  const light = new DirectionalLight('white', 2);
-  light.position.set(6, 6, 6);
-  scene.add(light)
+  // const light = new DirectionalLight('white', 2);
+  // light.position.set(6, 6, 6);
+  // scene.add(light)
 
   const light1 = new PointLight( 0xffffff, 200, 0 );
   light1.position.set( 0, 200, 0 );

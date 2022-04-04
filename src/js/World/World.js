@@ -5,6 +5,7 @@ import { createCamera, createDolly } from './components/camera.js';
 import { createLights } from './components/lights.js';
 import { blue } from './components/materials/blue.js';
 import { cube } from './components/meshes/cube.js'
+import { sphere } from './components/meshes/sphere.js'
 import { createFloor } from './components/meshes/floor.js'
 import { VrControls } from './system/VrControls.js'
 
@@ -13,6 +14,7 @@ class World {
     const renderer = createRenderer();
     const scene = createScene(renderer);
     const camera = createCamera();
+    camera.position.y = 1.6;
     this.loop = new Loop(camera, scene, renderer);
 
     const dolly = createDolly(camera, scene);
@@ -23,20 +25,31 @@ class World {
 
     const floor = createFloor(scene);
     const lights = createLights(scene);
-    const material = blue(0x292966);
+    const materialSphere1 = blue(0xeeee00);
+    const materialSphere2 = blue(0x000000);
+    const materialCube = blue(0xffffff);
 
-    const xItems = 32;
-    const yItems = 4;
-    const yShift = 3;
-    for (let i = 0; i < xItems; i++) {
-      for (let j = 0; j < yItems; j++) {
-        let temp_cube = cube(material);
-        temp_cube.position.x = (i - xItems/2) * 1.2 + 0.5;
-        temp_cube.position.y = (j - yItems/2) * 1.2 + 0.5 + yShift;
-        temp_cube.position.z = -4;
-        scene.add( temp_cube );
-        this.loop.updatables.push(temp_cube);
-      }
+    const nSphereItems = 80;
+    for (let j = 0; j < nSphereItems; j++) {
+      let radius = Math.random() * 100;
+      let rnd = Math.random();
+      let temp_sphere = sphere((rnd > 0.5) ? materialSphere1 : materialSphere2, radius);
+      temp_sphere.position.x = Math.random() * 400 - 200;
+      temp_sphere.position.y = Math.random() * radius * 8;
+      temp_sphere.position.z = Math.random() * 400 - 200;
+      scene.add( temp_sphere );
+    }
+
+    const nCubeItems = 160;
+    for (let i = 0; i < nCubeItems; i++) {
+      let width = Math.random() * 0.2;
+      let depth = Math.random() * 0.2;
+      let height = Math.random() * 200 * 4;
+      let temp_cube = cube(materialCube, width, height, depth);
+      temp_cube.position.x = Math.random() * 400 - 200;
+      temp_cube.position.y = height/2;
+      temp_cube.position.z = Math.random() * 400 - 200;
+      scene.add( temp_cube );
     }
   }
 
