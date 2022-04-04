@@ -82,7 +82,6 @@ class VrControls {
   handleController(delta) {
     const session = this.renderer.xr.getSession();
     if (session) {
-      this.cameraVector = new Vector3();
       this.camera.getWorldDirection(this.cameraVector);
       let velocityTranslation = 0.1;
       let velocityRotation = 0.4;
