@@ -11,21 +11,19 @@ import { sphere } from './components/meshes/sphere.js'
 import { createFloor } from './components/meshes/floor.js'
 import { VrControls } from './system/VrControls.js'
 
-let loop;
-
 class World {
   constructor() {
     const renderer = createRenderer();
     const scene = createScene(renderer);
     const camera = createCamera();
-    loop = new Loop(camera, scene, renderer);
+    this.loop = new Loop(camera, scene, renderer);
 
     const dolly = createDolly(camera, scene);
     dolly.position.set(0, 0, 40);
 
     // const controls = new OrbitControls(camera, renderer.domElement)
     const vrControls = new VrControls(renderer, dolly, camera);
-    loop.updatables.push(vrControls);
+    this.loop.updatables.push(vrControls);
 
     const floor = createFloor(scene);
     const lights = createLights(scene);
@@ -41,17 +39,17 @@ class World {
         temp_cube.position.y = (j - yItems/2) * 1.2 + 0.5 + yShift;
         temp_cube.position.z = -4;
         scene.add( temp_cube );
-        loop.updatables.push(temp_cube);
+        this.loop.updatables.push(temp_cube);
       }
     }
   }
 
   start() {
-    loop.start();
+    this.loop.start();
   }
 
   stop() {
-    loop.stop();
+    this.loop.stop();
   }
 }
 
