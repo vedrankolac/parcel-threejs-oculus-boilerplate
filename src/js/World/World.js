@@ -1,3 +1,4 @@
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { Loop } from './system/Loop.js';
 import { createRenderer } from './system/renderer.js';
 import { createScene } from './components/scene.js';
@@ -14,11 +15,11 @@ class World {
     const renderer = createRenderer();
     const scene = createScene(renderer);
     const camera = createCamera();
-    camera.position.y = 1.6;
     this.loop = new Loop(camera, scene, renderer);
+    this.controls = new OrbitControls(camera, renderer.domElement);
 
     const dolly = createDolly(camera, scene);
-    dolly.position.set(0, 0, 40);
+    dolly.position.set(0, 0, 0);
 
     const vrControls = new VrControls(renderer, dolly, camera);
     this.loop.updatables.push(vrControls);
