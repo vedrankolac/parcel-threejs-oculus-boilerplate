@@ -12,20 +12,20 @@ import { VrControls } from './system/VrControls.js'
 
 class World {
   constructor() {
-    const renderer = createRenderer();
-    const scene = createScene(renderer);
-    const camera = createCamera();
-    this.loop = new Loop(camera, scene, renderer);
-    this.controls = new OrbitControls(camera, renderer.domElement);
+    this.renderer = createRenderer();
+    this.scene = createScene(this.renderer);
+    this.camera = createCamera();
+    this.loop = new Loop(this.camera, this.scene, this.renderer);
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
-    const dolly = createDolly(camera, scene);
+    const dolly = createDolly(this.camera, this.scene);
     dolly.position.set(0, 0, 0);
 
-    const vrControls = new VrControls(renderer, dolly, camera);
+    const vrControls = new VrControls(this.renderer, dolly, this.camera);
     this.loop.updatables.push(vrControls);
 
-    const floor = createFloor(scene);
-    const lights = createLights(scene);
+    const floor = createFloor(this.scene);
+    const lights = createLights(this.scene);
     const materialSphere1 = blue(0xeeee00);
     const materialSphere2 = blue(0x000000);
     const materialCube = blue(0xffffff);
@@ -38,7 +38,7 @@ class World {
       temp_sphere.position.x = Math.random() * 400 - 200;
       temp_sphere.position.y = Math.random() * radius * 8;
       temp_sphere.position.z = Math.random() * 400 - 200;
-      scene.add( temp_sphere );
+      this.scene.add( temp_sphere );
     }
 
     const nCubeItems = 160;
@@ -50,7 +50,7 @@ class World {
       temp_cube.position.x = Math.random() * 400 - 200;
       temp_cube.position.y = height/2;
       temp_cube.position.z = Math.random() * 400 - 200;
-      scene.add( temp_cube );
+      this.scene.add( temp_cube );
     }
   }
 
