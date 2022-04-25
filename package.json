@@ -1,5 +1,5 @@
 {
-  "name": "oculus-test-scene",
+  "name": "parcel-threejs-oculus-boilerplate",
   "source": "src/index.html",
   "targets": {
     "default": {
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/birdlaketree/oculus-test-scene.git"
+    "url": "git+https://github.com/birdlaketree/parcel-threejs-oculus-boilerplate.git"
   },
   "keywords": [
     "javascript",
@@ -28,9 +28,9 @@
   "author": "vedran.kolac@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/birdlaketree/oculus-test-scene/issues"
+    "url": "https://github.com/birdlaketree/parcel-threejs-oculus-boilerplate/issues"
   },
-  "homepage": "https://birdlaketree.github.io/oculus-test-scene/",
+  "homepage": "https://birdlaketree.github.io/parcel-threejs-oculus-boilerplate/",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.3.2",
     "parcel": "^2.3.2"

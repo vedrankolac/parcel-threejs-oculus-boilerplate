@@ -1,10 +1,10 @@
-## parcel-threejs-boilerplate
+## parcel-threejs-oculus-boilerplate
 Boilerplate for a fast start with three.js on Oculus Quest 2 VR headset.
 - only tested on Oculus Quest 2
 - movement is controlled with joystick
 
 #### GitHub Page
-https://birdlaketree.github.io/oculus-test-scene/
+https://birdlaketree.github.io/parcel-threejs-oculus-boilerplate/
 
 #### 1. How to deploy for github pages
 ```bash
