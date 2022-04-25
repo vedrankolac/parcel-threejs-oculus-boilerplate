@@ -1,7 +1,8 @@
 ## parcel-threejs-oculus-boilerplate
 Boilerplate for a fast start with three.js on Oculus Quest 2 VR headset.
 - only tested on Oculus Quest 2
-- movement is controlled with joystick
+- movement is controlled with joystick on Oculus controler
+- use orbit controls to move camera on desktop or smartphone
 
 #### GitHub Page
 https://birdlaketree.github.io/parcel-threejs-oculus-boilerplate/
